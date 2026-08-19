@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": false,
+    "types": ["cypress", "@cypress/grep"]
+  },
+  "include": ["cypress/**/*.js", "cypress/**/*.d.ts", "cypress.config.js"]
+}

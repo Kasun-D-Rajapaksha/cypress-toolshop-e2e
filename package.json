@@ -1,0 +1,32 @@
+{
+  "name": "cypress-toolshop-e2e",
+  "version": "1.0.0",
+  "description": "Cypress JavaScript UI and API tests for Practice Software Testing (Toolshop).",
+  "private": true,
+  "scripts": {
+    "cy:open": "cypress open",
+    "cy:run": "cypress run --browser chrome",
+    "cy:smoke": "cypress run --browser chrome --env grepTags=@smoke",
+    "lint": "eslint cypress.config.js cypress"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [
+    "cypress",
+    "e2e",
+    "api",
+    "qa",
+    "javascript",
+    "toolshop"
+  ],
+  "author": "Kasun Rajapaksha",
+  "license": "MIT",
+  "devDependencies": {
+    "@cypress/grep": "4.1.0",
+    "cypress": "15.20.1",
+    "cypress-mochawesome-reporter": "5.0.0",
+    "eslint": "8.57.1",
+    "eslint-plugin-cypress": "3.6.0"
+  }
+}
