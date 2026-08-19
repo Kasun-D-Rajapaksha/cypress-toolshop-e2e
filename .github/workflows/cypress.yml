@@ -1,0 +1,54 @@
+name: Cypress Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  smoke:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+      - uses: cypress-io/github-action@v6
+        with:
+          browser: chrome
+          command: npm run cy:smoke
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cypress-smoke-artifacts
+          path: |
+            cypress/screenshots
+            cypress/videos
+            cypress/reports
+          if-no-files-found: ignore
+
+  regression:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+      - uses: cypress-io/github-action@v6
+        with:
+          browser: chrome
+          command: npm run cy:run
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cypress-artifacts
+          path: |
+            cypress/screenshots
+            cypress/videos
+            cypress/reports
+          if-no-files-found: ignore
